@@ -1,0 +1,1 @@
+webpackJsonp([1],{135:function(n,e,o){"use strict";(function(n){o(4),n(document).ready(function(){var e=document.createElement("div");e.innerHTML="<h1> hello mobile world</h1>",document.body.appendChild(e),n("h1").maroon()})}).call(e,o(1))}},[135]);

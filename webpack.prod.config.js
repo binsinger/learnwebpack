@@ -9,7 +9,7 @@ var APP_PATH  = path.resolve(ROOT_PATH, 'app');
 var BUILD_PATH = path.resolve(ROOT_PATH, 'build');
 
 module.exports = {
- entry: {
+  entry: {
     app: path.resolve(APP_PATH, 'index.js'),
     mobile: path.resolve(APP_PATH, 'mobile.js'),
     vendors: ['jquery', 'moment']
@@ -17,19 +17,6 @@ module.exports = {
   output: {
     path: BUILD_PATH,
     filename: '[name].[hash:4].js'
-  },
-  devtool: 'eval-source-map',
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true,
-    proxy: {
-      '/api/*':{
-        target: "http:/localhost:5000",
-        secure: false
-      }
-    }
   },
   module: {
     loaders: [
@@ -56,16 +43,10 @@ module.exports = {
         loader: 'url-loader?limit=40000'
       }
     ],
-   /* preLoaders: [
-      {
-        test: /\.jsx?$/,
-        include: APP_PATH,
-        loader: 'jshint-loader'
-      }
-    ]*/
+ 
   },
   plugins: [
-   new HtmlwebpackPlugin({
+    new HtmlwebpackPlugin({
       title: "Hello World app",
       template: path.resolve(__dirname,'index.html'),
       chunks: ['app', 'vendors'],
@@ -85,10 +66,9 @@ module.exports = {
       jQuery: 'jquery',
       "window.jQuery": "jquery"
     }),
-    // new webpack.optimize.UglifyJsPlugin({ minimize: true}),
+    new webpack.optimize.UglifyJsPlugin({ minimize: true}),
     new webpack.optimize.CommonsChunkPlugin({name:'vendors', filename:'vendors.js'}),
+
   ],
- /* jshint: {
-    "esnext": true
-  }*/
+
 }
